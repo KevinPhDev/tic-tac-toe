@@ -13,3 +13,19 @@ body {
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
+
+#playerTab {
+    width: 500px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.playerButton {
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+}
