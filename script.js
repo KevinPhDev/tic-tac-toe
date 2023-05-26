@@ -18,9 +18,14 @@ const player2 = createPlayer('playerTwo', 'O');
 const squares = document.querySelectorAll('.square');
 
 squares.forEach(square => {
-    square.addEventListener('click', () => setMarker(square))
+    square.addEventListener('click', () => {
+        setMarker(square, currentMarker);
+        currentMarker = !currentMarker;
+    })
 })
 
-function setMarker(square) {
-    square.innerHTML = 'X';
+let currentMarker = 'X';
+
+function setMarker(square, currentMarker) {
+    square.innerHTML = currentMarker ? 'X' : 'O';
 }
