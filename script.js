@@ -19,13 +19,16 @@ const squares = document.querySelectorAll('.square');
 
 squares.forEach(square => {
     square.addEventListener('click', () => {
-        setMarker(square, currentMarker);
+        const index = square.dataset.index;
+        setMarker(square, index, currentMarker);
         currentMarker = !currentMarker;
+        console.log(gameBoard.board);
     })
 })
 
 let currentMarker = 'X';
 
-function setMarker(square, currentMarker) {
+function setMarker(square, index, currentMarker) {
     square.innerHTML = currentMarker ? 'X' : 'O';
+    gameBoard.board[index] = square.innerHTML;
 }
