@@ -20,11 +20,13 @@ const squares = document.querySelectorAll('.square');
 squares.forEach(square => {
     square.addEventListener('click', () => {
         const index = square.dataset.index;
-        setMarker(square, index, currentMarker);
-        currentMarker = !currentMarker;
-        console.log(gameBoard.board);
-    })
-})
+        if (square.innerHTML === '') {
+            setMarker(square, index, currentMarker);
+            currentMarker = !currentMarker;
+            console.log(gameBoard.board);
+        }
+    });
+});
 
 let currentMarker = 'X';
 
