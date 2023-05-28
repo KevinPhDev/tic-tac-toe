@@ -1,5 +1,6 @@
 const gameBoard = (() => {
-    const board = ['', '', '', '', '', '', '', '', '']
+    let board = ['', '', '', '', '', '', '', '', ''];
+
     return {
         board
     }
@@ -34,3 +35,13 @@ function setMarker(square, index, currentMarker) {
     square.innerHTML = currentMarker ? 'X' : 'O';
     gameBoard.board[index] = square.innerHTML;
 }
+
+const clearBoard = document.querySelector('#clearBoard');
+
+clearBoard.addEventListener('click', () => {
+    squares.forEach(square => {
+        square.innerHTML = '';
+    })
+    gameBoard.board = ['', '', '', '', '', '', '', '', ''];
+    console.log(gameBoard.board);
+})
