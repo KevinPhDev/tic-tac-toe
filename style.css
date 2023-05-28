@@ -14,7 +14,7 @@ body {
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
 
-#playerTab {
+#menu {
     width: 500px;
     height: 100px;
     display: flex;
@@ -23,7 +23,7 @@ body {
     gap: 20px;
 }
 
-.playerButton {
+.menuButton {
     max-width: fit-content;
     max-height: fit-content;
     padding: 15px;
