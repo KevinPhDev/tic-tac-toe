@@ -5,9 +5,19 @@ const gameBoard = (() => {
         return board.every(boardArrayItem => boardArrayItem !== '');
     }
 
+    const diagonalWin = () => {
+        if (board[4] === board[0] && board[8]) {
+            console.log('Diagonal Win 1');
+        }
+        if (board[4] === board[2] && board[6]) {
+            console.log('Diagonal Win 2');
+        }
+    }
+
     return {
         board,
-        isBoardFull
+        isBoardFull,
+        diagonalWin
     }
 })();
 
@@ -34,6 +44,7 @@ squares.forEach(square => {
         if (gameBoard.isBoardFull()) {
             console.log('Board is full');
         }
+        gameBoard.diagonalWin();
     });
 });
 
