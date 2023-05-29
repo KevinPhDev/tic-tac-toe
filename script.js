@@ -26,11 +26,24 @@ const gameBoard = (() => {
         }
     }
 
+    const verticalWin = () => {
+        if (board[0] === board[3] && board[6]) {
+            console.log('Vertical Win 1');
+        }
+        if (board[1] === board[4] && board[7]) {
+            console.log('Vertical Win 2');
+        }
+        if (board[2] === board[5] && board[8]) {
+            console.log('Vertical Win 3');
+        }
+    }
+
     return {
         board,
         isBoardFull,
         diagonalWin,
-        horizontalWin
+        horizontalWin,
+        verticalWin
     }
 })();
 
@@ -59,6 +72,7 @@ squares.forEach(square => {
         }
         gameBoard.diagonalWin();
         gameBoard.horizontalWin();
+        gameBoard.verticalWin();
     });
 });
 
