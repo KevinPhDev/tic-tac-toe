@@ -14,10 +14,23 @@ const gameBoard = (() => {
         }
     }
 
+    const horizontalWin = () => {
+        if (board[0] === board[1] && board[2]) {
+            console.log('Horizontal Win 1');
+        }
+        if (board[3] === board[4] && board[5]) {
+            console.log('Horizontal Win 2');
+        }
+        if (board[6] === board[7] && board[8]) {
+            console.log('Horizontal Win 3');
+        }
+    }
+
     return {
         board,
         isBoardFull,
-        diagonalWin
+        diagonalWin,
+        horizontalWin
     }
 })();
 
@@ -45,6 +58,7 @@ squares.forEach(square => {
             console.log('Board is full');
         }
         gameBoard.diagonalWin();
+        gameBoard.horizontalWin();
     });
 });
 
