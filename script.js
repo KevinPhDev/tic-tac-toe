@@ -1,8 +1,13 @@
 const gameBoard = (() => {
-    let board = ['', '', '', '', '', '', '', '', ''];
+    const board = ['', '', '', '', '', '', '', '', ''];
+
+    const isBoardFull = () => {
+        return board.every(boardArrayItem => boardArrayItem !== '');
+    }
 
     return {
-        board
+        board,
+        isBoardFull
     }
 })();
 
@@ -13,8 +18,8 @@ const createPlayer = function (name, marker) {
     }
 }
 
-const player1 = createPlayer('playerOne', 'X');
-const player2 = createPlayer('playerTwo', 'O');
+const playerOne = createPlayer('playerOne', 'X');
+const playerTwo = createPlayer('playerTwo', 'O');
 
 const squares = document.querySelectorAll('.square');
 
@@ -25,6 +30,9 @@ squares.forEach(square => {
             setMarker(square, index, currentMarker);
             currentMarker = !currentMarker;
             console.log(gameBoard.board);
+        }
+        if (gameBoard.isBoardFull()) {
+            console.log('Board is full');
         }
     });
 });
