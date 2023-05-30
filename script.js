@@ -6,10 +6,10 @@ const gameBoard = (() => {
     }
 
     const diagonalWin = () => {
-        if (board[4] === board[0] && board[8]) {
+        if (board[4] !== '' && board[4] === board[0] && board[0] === board[8]) {
             console.log('Diagonal Win 1');
         }
-        if (board[4] === board[2] && board[6]) {
+        if (board[4] !== '' && board[4] === board[2] && board[2] === board[6]) {
             console.log('Diagonal Win 2');
         }
     }
