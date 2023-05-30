@@ -27,13 +27,13 @@ const gameBoard = (() => {
     }
 
     const verticalWin = () => {
-        if (board[0] === board[3] && board[6]) {
+        if (board[0] !== '' && board[0] == board[3] && board[3] == board[6]) {
             console.log('Vertical Win 1');
         }
-        if (board[1] === board[4] && board[7]) {
+        if (board[1] !== '' && board[1] == board[4] && board[4] == board[7]) {
             console.log('Vertical Win 2');
         }
-        if (board[2] === board[5] && board[8]) {
+        if (board[2] !== '' && board[2] == board[5] && board[5] == board[8]) {
             console.log('Vertical Win 3');
         }
     }
