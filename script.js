@@ -93,12 +93,13 @@ squares.forEach(square => {
         if (gameBoard.isBoardFull()) {
             console.log('Board is full');
         }
-        if (gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin() === 'X') {
+        const winningMarker = gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin();
+        if (winningMarker === 'X') {
             playerX.points++;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
             gameBoard.gameOver = true;
-        } else if (gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin() === 'O') {
+        } else if (winningMarker === 'O') {
             playerO.points++;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
