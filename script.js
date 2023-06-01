@@ -5,6 +5,8 @@ const gameBoard = (() => {
         return board.every(boardArrayItem => boardArrayItem !== '');
     }
 
+    let gameOver = false;
+
     const diagonalWin = () => {
         if (board[4] !== '' && board[4] === board[0] && board[0] === board[8]) {
             console.log('Diagonal Win 1');
@@ -59,7 +61,8 @@ const gameBoard = (() => {
         isBoardFull,
         diagonalWin,
         horizontalWin,
-        verticalWin
+        verticalWin,
+        gameOver
     }
 })();
 
@@ -79,6 +82,9 @@ const squares = document.querySelectorAll('.square');
 squares.forEach(square => {
     square.addEventListener('click', () => {
         const index = square.dataset.index;
+        if (gameBoard.gameOver) {
+            return;
+        }
         if (square.innerHTML === '') {
             setMarker(square, index, currentMarker);
             currentMarker = !currentMarker;
@@ -91,10 +97,12 @@ squares.forEach(square => {
             playerX.points++;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
+            gameBoard.gameOver = true;
         } else if (gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin() === 'O') {
             playerO.points++;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
+            gameBoard.gameOver = true;
         }
     });
 });
