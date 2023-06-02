@@ -95,7 +95,8 @@ squares.forEach(square => {
         }
         const winningMarker = gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin();
         if (!winningMarker && gameBoard.isBoardFull()) {
-            console.log('Game Tied!')
+            console.log('Game Tied!');
+            gameBoard.gameOver = true;
         }
         if (winningMarker === 'X') {
             playerX.points++;
