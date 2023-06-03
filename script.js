@@ -76,6 +76,8 @@ const createPlayer = function (name, marker, points) {
 
 const playerX = createPlayer('playerX', 'X', 0);
 const playerO = createPlayer('playerO', 'O', 0);
+const playerOneScore = document.querySelector('#playerOneScore');
+const playerTwoScore = document.querySelector('#playerTwoScore');
 
 const squares = document.querySelectorAll('.square');
 
@@ -100,11 +102,13 @@ squares.forEach(square => {
         }
         if (winningMarker === 'X') {
             playerX.points++;
+            playerOneScore.textContent = playerX.points;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
             gameBoard.gameOver = true;
         } else if (winningMarker === 'O') {
             playerO.points++;
+            playerTwoScore.textContent = playerO.points;
             console.log(`X: ${playerX.points}`);
             console.log(`O: ${playerO.points}`);
             gameBoard.gameOver = true;
