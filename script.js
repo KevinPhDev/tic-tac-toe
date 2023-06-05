@@ -1,11 +1,15 @@
 const gameBoard = (() => {
-    const board = ['', '', '', '', '', '', '', '', ''];
+    let board = ['', '', '', '', '', '', '', '', ''];
 
     const isBoardFull = () => {
         return board.every(boardArrayItem => boardArrayItem !== '');
     }
 
     let gameOver = false;
+
+    const resetBoard = () => {
+        board = ['', '', '', '', '', '', '', '', ''];
+    }
 
     const diagonalWin = () => {
         if (board[4] !== '' && board[4] === board[0] && board[0] === board[8]) {
@@ -59,6 +63,7 @@ const gameBoard = (() => {
     return {
         board,
         isBoardFull,
+        resetBoard,
         diagonalWin,
         horizontalWin,
         verticalWin,
@@ -87,7 +92,7 @@ squares.forEach(square => {
         if (gameBoard.gameOver) {
             return;
         }
-        if (square.innerHTML === '') {
+        if (square.textContent === '') {
             setMarker(square, index, currentMarker);
             currentMarker = !currentMarker;
             console.log(gameBoard.board);
@@ -129,6 +134,7 @@ clearBoard.addEventListener('click', () => {
     squares.forEach(square => {
         square.innerHTML = '';
     })
-    gameBoard.board = ['', '', '', '', '', '', '', '', ''];
+    gameBoard.resetBoard();
     console.log(gameBoard.board);
+    gameBoard.gameOver = false;
 })
