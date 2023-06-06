@@ -1,6 +1,12 @@
 const gameBoard = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
 
+    const getBoard = () => [...board];
+
+    const setBoard = (newBoard) => {
+        board = [...newBoard];
+    }
+
     const isBoardFull = () => {
         return board.every(boardArrayItem => boardArrayItem !== '');
     }
@@ -23,7 +29,7 @@ const gameBoard = (() => {
             return board[4];
         }
     }
-
+    
     const horizontalWin = () => {
         if (board[0] !== '' && board[0] == board[1] && board[1] == board[2]) {
             console.log('Horizontal Win 1');
@@ -41,7 +47,7 @@ const gameBoard = (() => {
             return board[6];
         }
     }
-
+    
     const verticalWin = () => {
         if (board[0] !== '' && board[0] == board[3] && board[3] == board[6]) {
             console.log('Vertical Win 1');
@@ -61,7 +67,8 @@ const gameBoard = (() => {
     }
 
     return {
-        board,
+        getBoard,
+        setBoard,
         isBoardFull,
         resetBoard,
         diagonalWin,
@@ -86,55 +93,64 @@ const playerTwoScore = document.querySelector('#playerTwoScore');
 
 const squares = document.querySelectorAll('.square');
 
+function setMarker(square, index, currentMarker) {
+    square.textContent = currentMarker ? 'X' : 'O';
+    let newBoard = gameBoard.getBoard();
+    newBoard[index] = square.textContent;
+    gameBoard.setBoard(newBoard);
+}
+
+const squareClick = (event) => {
+    const square = event.target;
+    const index = square.dataset.index;
+    if (gameBoard.gameOver) {
+        return;
+    }
+    if (square.textContent === '') {
+        setMarker(square, index, currentMarker);
+        currentMarker = !currentMarker;
+        console.log(gameBoard.getBoard());
+    }
+    if (gameBoard.isBoardFull()) {
+        console.log('Board is full');
+    }
+    const winningMarker = gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin();
+    if (!winningMarker && gameBoard.isBoardFull()) {
+        console.log('Game Tied!');
+        gameBoard.gameOver = true;
+    }
+    if (winningMarker === 'X') {
+        playerX.points++;
+        playerOneScore.textContent = playerX.points;
+        console.log(`X: ${playerX.points}`);
+        console.log(`O: ${playerO.points}`);
+        gameBoard.gameOver = true;
+    } else if (winningMarker === 'O') {
+        playerO.points++;
+        playerTwoScore.textContent = playerO.points;
+        console.log(`X: ${playerX.points}`);
+        console.log(`O: ${playerO.points}`);
+        gameBoard.gameOver = true;
+    }
+    console.log(winningMarker);
+};
+
 squares.forEach(square => {
-    square.addEventListener('click', () => {
-        const index = square.dataset.index;
-        if (gameBoard.gameOver) {
-            return;
-        }
-        if (square.textContent === '') {
-            setMarker(square, index, currentMarker);
-            currentMarker = !currentMarker;
-            console.log(gameBoard.board);
-        }
-        if (gameBoard.isBoardFull()) {
-            console.log('Board is full');
-        }
-        const winningMarker = gameBoard.diagonalWin() || gameBoard.horizontalWin() || gameBoard.verticalWin();
-        if (!winningMarker && gameBoard.isBoardFull()) {
-            console.log('Game Tied!');
-            gameBoard.gameOver = true;
-        }
-        if (winningMarker === 'X') {
-            playerX.points++;
-            playerOneScore.textContent = playerX.points;
-            console.log(`X: ${playerX.points}`);
-            console.log(`O: ${playerO.points}`);
-            gameBoard.gameOver = true;
-        } else if (winningMarker === 'O') {
-            playerO.points++;
-            playerTwoScore.textContent = playerO.points;
-            console.log(`X: ${playerX.points}`);
-            console.log(`O: ${playerO.points}`);
-            gameBoard.gameOver = true;
-        }
-    });
+    square.addEventListener('click', squareClick);
 });
 
-let currentMarker = 'X';
-
-function setMarker(square, index, currentMarker) {
-    square.innerHTML = currentMarker ? 'X' : 'O';
-    gameBoard.board[index] = square.innerHTML;
-}
+let currentMarker = true;
 
 const clearBoard = document.querySelector('#clearBoard');
 
 clearBoard.addEventListener('click', () => {
     squares.forEach(square => {
-        square.innerHTML = '';
+        square.textContent = '';
     })
     gameBoard.resetBoard();
-    console.log(gameBoard.board);
+    console.log(gameBoard.getBoard());
     gameBoard.gameOver = false;
-})
+    currentMarker = true;
+});
+
+
