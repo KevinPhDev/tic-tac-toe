@@ -124,12 +124,14 @@ const squareClick = (event) => {
         playerOneScore.textContent = playerX.points;
         console.log(`X: ${playerX.points}`);
         console.log(`O: ${playerO.points}`);
+        gameStatus.textContent = 'Player 1 Wins';
         gameBoard.gameOver = true;
     } else if (winningMarker === 'O') {
         playerO.points++;
         playerTwoScore.textContent = playerO.points;
         console.log(`X: ${playerX.points}`);
         console.log(`O: ${playerO.points}`);
+        gameStatus.textContent = 'Player 2 Wins';
         gameBoard.gameOver = true;
     }
     console.log(winningMarker);
@@ -154,3 +156,4 @@ clearBoard.addEventListener('click', () => {
 });
 
 
+const gameStatus = document.querySelector('#gameStatus');
