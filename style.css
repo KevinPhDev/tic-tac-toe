@@ -10,8 +10,6 @@ body {
 #gameStatus {
     width: 400px;
     height: 70px;
-    display: flex;
-    flex: 1;
 }
 
 #scoreBoard {
@@ -19,6 +17,12 @@ body {
     height: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.playerScore, #playerOneScore, #playerTwoScore, #gameStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #gameboard {
