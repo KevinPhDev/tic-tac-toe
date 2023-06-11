@@ -10,8 +10,8 @@ body {
 #gameStatus {
     width: 400px;
     height: 70px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex: 1;
 }
 
 #scoreBoard {
