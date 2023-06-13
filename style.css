@@ -42,8 +42,6 @@ body {
 }
 
 .menuButton {
-    max-width: fit-content;
-    max-height: fit-content;
-    padding: 15px;
+    padding: 5px 8px;
     border-radius: 10px;
 }
