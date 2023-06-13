@@ -147,7 +147,9 @@ let currentMarker = true;
 
 const clearBoard = document.querySelector('#clearBoard');
 
-clearBoard.addEventListener('click', () => {
+clearBoard.addEventListener('click', emptyBoard);
+
+function emptyBoard() {
     squares.forEach(square => {
         square.textContent = '';
     })
@@ -156,9 +158,25 @@ clearBoard.addEventListener('click', () => {
     gameBoard.gameOver = false;
     currentMarker = true;
     gameStatus.textContent = '';
-});
+}
 
 
 const gameStatus = document.querySelector('#gameStatus');
 
 let gameNumber = 0;
+
+const resetScore = document.querySelector('#scoreReset');
+
+function resetPoints() {
+    gameNumber = 0;
+    playerX.points = 0;
+    playerO.points = 0;
+    playerOneScore.textContent = playerX.points;
+    playerTwoScore.textContent = playerO.points;
+    gameStatus.textContent = `Game is reset. This is Game 0`;
+}
+
+resetScore.addEventListener('click', () => {
+    resetPoints();
+    emptyBoard();
+});
