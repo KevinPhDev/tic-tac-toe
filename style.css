@@ -32,6 +32,12 @@ body {
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 }
 
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #menu {
     width: 400px;
     height: 100px;
